@@ -1,2 +1,569 @@
-# dev-technology
-Welcome to Dev Technology!
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dev Technology</title>
+  <style>
+    :root{--red:#c40000;--white:#fff;--bg:#fff;--muted:#f7f7f7}
+    *{box-sizing:border-box;font-family:Inter, system-ui, Arial, sans-serif}
+    body{margin:0;background:var(--bg);color:#222}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:4px solid var(--red);background:linear-gradient(90deg, #fff 0 60%, #fff0 60%)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:8px;background:var(--red);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700}
+    nav{display:flex;gap:8px}
+    button.navbtn{background:transparent;border:2px solid var(--red);color:var(--red);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+    button.navbtn.active{background:var(--red);color:var(--white)}
+    .cart{position:relative}
+    .cartbtn{background:var(--red);color:var(--white);border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .cart-count{position:absolute;top:-6px;right:-6px;background:#111;color:#fff;border-radius:12px;padding:2px 6px;font-size:12px}
+    main{padding:28px;max-width:1100px;margin:0 auto}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center}
+    .hero h1{font-size:36px;margin:0;color:var(--red)}
+    .hero p{color:#333}
+    .hero .bigimg{width:100%;height:300px;background:var(--muted);display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden}
+    .section{margin:40px 0;padding:24px;background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    .staff-grid{display:flex;gap:12px}
+    .staff-card{flex:1;background:var(--muted);padding:12px;border-radius:10px;text-align:center}
+    .staff-card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+    form{display:flex;flex-direction:column;gap:8px}
+    input,select,textarea{padding:10px;border-radius:8px;border:1px solid #ddd}
+    .row{display:flex;gap:8px}
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+    .product{border:1px solid #eee;padding:12px;border-radius:10px;background:#fff}
+    .product img{width:100%;height:140px;object-fit:cover;border-radius:6px}
+    .btn{background:var(--red);color:var(--white);border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .ghost{background:transparent;border:1px solid #ccc;color:#333}
+    .small{font-size:13px;padding:6px 8px}
+    .right{margin-left:auto}
+    footer{padding:20px;text-align:center;color:#666}
+    /* staff dashboard layout */
+    .dash-grid{display:grid;grid-template-columns:1fr 360px;gap:12px}
+    .list{max-height:420px;overflow:auto}
+    .item{display:flex;gap:8px;align-items:center;padding:8px;border-bottom:1px solid #f2f2f2}
+    .claim{background:green;color:#fff;padding:6px 8px;border-radius:6px;border:none}
+    .danger{background:#c40000;color:#fff}
+    .muted{color:#666}
+    .hidden{display:none}
+    .notice{padding:10px;border-radius:6px;background:#fff8f8;border:1px solid #ffdede;color:#900}
+    /* responsive */
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.right{margin-left:0}.dash-grid{grid-template-columns:1fr}.staff-grid{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">DT</div>
+      <div>
+        <div style="font-weight:800">Dev Technology</div>
+        <div style="font-size:12px;color:#666">"Helping our members and the wider community..."</div>
+      </div>
+    </div>
+
+    <nav>
+      <button class="navbtn active" data-target="landing">Landing Page</button>
+      <button class="navbtn" data-target="customer">Customer Portal</button>
+      <button class="navbtn" data-target="products">Products</button>
+      <button class="navbtn" data-target="staff">Staff</button>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="cart">
+        <button class="cartbtn" id="open-cart">Cart 🛒</button>
+        <div class="cart-count" id="cart-count">0</div>
+      </div>
+      <div id="user-area"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Landing -->
+    <section id="landing" class="page">
+      <div class="hero">
+        <div>
+          <h1>Dev Technology — Smart, Fast & Reliable</h1>
+          <p>Welcome to Dev Technology, we work with our amazing growing and strong community to create the best products and assets possible for pur daily community. Were activly working to create amazing products for you, our supportive community.</p>
+
+          <div class="section">
+            <h3>About Our Company</h3>
+            <p>Here at Dev Technology we offer a variety of different products for our members and the wider community. Our company can feature:</p>
+            <ul>
+              <li>Roblox Buildings</li>
+              <li>HTML or CSS Development Code</li>
+              <li>Roblox Scripts (script, local and module)</li>
+              <li>Roblox UI Design</li>
+	      <li>Discord Embed Services</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>What we value</h3>
+            <p>Transparency, speed, and a customer-first mindset. We publish clear invoices and keep product pages clean and concise.</p>
+          </div>
+
+        </div>
+
+        <div>
+          <img src="rblx.png" alt="Roblox Icon" width="400" height="220">
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Meet the Team</h3>
+        <p>Below you can find some of our key staff members.</p>
+        <div class="staff-grid" id="landing-staff">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>More About Our Services</h3>
+        <p>We focus on building secure and simple tools. Whether you need a storefront, order processing, or a Discord webhook integration, Dev Technology can help. Contact us via the support server link in the Customer Portal.</p>
+      </div>
+    </section>
+
+    <!-- Customer Portal -->
+    <section id="customer" class="page hidden">
+      <div class="section">
+        <h2>Customer Portal</h2>
+        <p class="muted">Create an account or log in to access products and your orders.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <h4>Create Account</h4>
+            <form id="register-form">
+              <input name="username" placeholder="Username" required />
+              <input name="discord" placeholder="Discord Username (name#1234)" />
+              <input name="password" type="password" placeholder="Password" required />
+              <input name="confirm" type="password" placeholder="Confirm Password" required />
+              <button class="btn" type="submit">Create account</button>
+            </form>
+            <div id="register-msg" class="muted" style="margin-top:8px"></div>
+          </div>
+
+          <div>
+            <h4>Login</h4>
+            <form id="login-form">
+              <input name="username" placeholder="Username" required />
+              <input name="password" type="password" placeholder="Password" required />
+              <button class="btn" type="submit">Log in</button>
+            </form>
+            <div id="login-msg" class="muted" style="margin-top:8px"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="section">
+          <h4>About our customer portal</h4>
+          <p>After creating an account you will be able to access our products and order system. We will also send a short welcome summary to the staff Discord via webhook (staffs set this up in Staff Dashboard).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="page hidden">
+      <div class="section">
+        <h2>Products</h2>
+        <p class="muted">Only visible to logged in users.</p>
+        <div id="products-grid" class="products-grid"></div>
+      </div>
+    </section>
+
+    <!-- Cart -->
+    <section id="cart" class="page hidden">
+      <div class="section">
+        <h2>Your Cart</h2>
+        <div id="cart-list"></div>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <button class="btn" id="complete-order">Complete Order</button>
+          <button class="ghost" id="clear-cart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout / Thank you -->
+    <section id="checkout" class="page hidden">
+      <div class="section">
+        <h2>Order Complete</h2>
+        <div id="thanks"></div>
+      </div>
+    </section>
+
+    <!-- Staff Login & Dashboard -->
+    <section id="staff" class="page hidden">
+      <div id="staff-login-section" class="section">
+        <h2>Staff Login</h2>
+        <form id="staff-login-form" style="max-width:360px">
+          <input name="username" placeholder="Staff username" required />
+          <input name="password" type="password" placeholder="Password" required />
+          <button class="btn" type="submit">Log in</button>
+        </form>
+        <div class="muted" style="margin-top:8px">Please use log in details provided by your HoT - your Head of Team.</div>
+      </div>
+
+      <div id="staff-dashboard" class="hidden section">
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+          <h2>Staff Dashboard</h2>
+          <div>
+            <button class="ghost" id="logout-staff">Log out</button>
+          </div>
+        </div>
+
+        <div class="dash-grid" style="margin-top:12px">
+          <div>
+            <h3>Products</h3>
+            <form id="product-create" style="display:flex;gap:8px;align-items:center">
+              <input name="name" placeholder="Product name" required />
+              <input name="price" placeholder="Price" required />
+              <input name="image" placeholder="Image URL (or leave to upload)" />
+              <input type="file" id="product-image-file" accept="image/*" />
+              <button class="btn" type="submit">Create</button>
+            </form>
+            <div class="list" id="products-list"></div>
+
+            <h3 style="margin-top:16px">Orders</h3>
+            <div class="list" id="orders-list"></div>
+          </div>
+
+          <div>
+            <h3>Customers</h3>
+            <div class="list" id="customers-list"></div>
+
+            <h3 style="margin-top:12px">Landing Staff (editable)</h3>
+            <div id="landing-staff-editor"></div>
+
+            <h3 style="margin-top:12px">Webhook Settings</h3>
+            <div class="muted">Set a Discord webhook URL to receive welcome & order embeds.</div>
+            <input id="webhook-url" placeholder="Discord Webhook URL" />
+            <div style="margin-top:8px">
+              <button id="save-webhook" class="btn small">Save Webhook</button>
+            </div>
+
+            <div style="margin-top:16px">
+              <button id="mass-delete-orders" class="danger small">Delete All Orders</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Dev Technology © <span id="year"></span> — William Oyston
+  </footer>
+
+<script>
+// -------------------------------
+// CONFIG - replace webhook if you want serverless webhook posts
+// -------------------------------
+const CONFIG = {
+  // If you'd like Discord webhook posting to work from the browser, set your webhook URL here.
+  // NOTE: Posting a webhook directly from browser exposes the webhook to users. Safer approach
+  // is to proxy via your own server. If CORS blocks direct webhook POSTs you must implement
+  // a small server-side forwarder.
+  webhookKey: 'discord_webhook_url' // key name in localStorage
+}
+
+// -------------------------------
+// Bootstrapping sample data
+// -------------------------------
+function loadData(){
+  if(!localStorage.getItem('dev_users')){
+    const users = [
+      {username:'customer1', discord:'cust#0001', password:'pass', orders:[]}
+    ];
+    localStorage.setItem('dev_users', JSON.stringify(users));
+  }
+  if(!localStorage.getItem('dev_staff')){
+    const staff = [
+      {username:'admin', password:'admin123', name:'Admin User'},
+      {username:'staff1', password:'staff123', name:'Staff One'}
+    ];
+    localStorage.setItem('dev_staff', JSON.stringify(staff));
+  }
+  if(!localStorage.getItem('dev_products')){
+    const products = [
+      {id: idNow(), name:'Starter Pack', price:4.99, image:'', desc:'A simple starter pack'},
+      {id: idNow()+1, name:'Pro Pack', price:12.99, image:'', desc:'More features included'}
+    ];
+    localStorage.setItem('dev_products', JSON.stringify(products));
+  }
+  if(!localStorage.getItem('dev_orders')) localStorage.setItem('dev_orders', JSON.stringify([]));
+  if(!localStorage.getItem('dev_landing_staff')){
+    localStorage.setItem('dev_landing_staff', JSON.stringify([
+      {name:'William Oyston',title:'→ Director',image:''},
+      {name:'Vacant',title:'→ Lead Dev',image:''},
+      {name:'Vacant',title:'→ Support',image:''}
+    ]));
+  }
+}
+
+function renderCustomerProfiles(){
+  const d=document.getElementById('customerProfiles');
+  d.innerHTML='';
+  Object.values(customers).forEach(c=>{
+    const e=document.createElement('div');
+    e.className='customer-profile';
+    e.innerHTML=`<strong>${c.username}</strong><br/>Discord: ${c.discord}<br/>Orders: ${c.orders.length}<br/>
+      <button class='delete-btn' onclick="deleteCustomer('${c.username}')">Delete Customer</button>`;
+    d.appendChild(e);
+  });
+}
+
+function deleteCustomer(u){
+  if(confirm('Delete customer '+u+'?')){
+    delete customers[u];
+    saveData();
+    renderCustomerProfiles();
+    alert('Customer '+u+' deleted.');
+  }
+}
+
+function idNow(){return Date.now()+Math.floor(Math.random()*999)}
+
+loadData();
+
+// -------------------------------
+// Utilities
+// -------------------------------
+function $(s,root=document){return root.querySelector(s)}
+function $all(s,root=document){return Array.from(root.querySelectorAll(s))}
+function save(key,val){localStorage.setItem(key,JSON.stringify(val))}
+function load(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch(e){return null}}
+function notify(msg,el=document.body){alert(msg)}
+
+// -------------------------------
+// Navigation
+// -------------------------------
+$all('.navbtn').forEach(b=>b.addEventListener('click',e=>{
+  $all('.navbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  showPage(b.dataset.target);
+}));
+
+function showPage(name){
+  $all('.page').forEach(p=>p.classList.add('hidden'));
+  const el = document.getElementById(name);
+  if(!el) return;
+  el.classList.remove('hidden');
+  if(name==='products') renderProducts();
+  if(name==='landing') renderLandingStaff();
+  if(name==='cart') renderCart();
+  if(name==='staff') renderStaffArea();
+}
+
+// initial
+showPage('landing');
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// -------------------------------
+// Landing staff
+// -------------------------------
+function renderLandingStaff(){
+  const container = $('#landing-staff'); container.innerHTML='';
+  const staff = load('dev_landing_staff') || [];
+  staff.forEach(s=>{
+    const div = document.createElement('div'); div.className='staff-card';
+    const img = document.createElement('img'); img.src = s.image || 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#aaa">No image</text></svg>`);
+    const name = document.createElement('div'); name.style.fontWeight='700'; name.style.marginTop='8px'; name.textContent = s.name || 'Name';
+    const title = document.createElement('div'); title.className='muted'; title.textContent = s.title || 'Title';
+    div.appendChild(img); div.appendChild(name); div.appendChild(title);
+    container.appendChild(div);
+  });
+}
+
+// -------------------------------
+// Auth: Customer register/login
+// -------------------------------
+const registerForm = $('#register-form');
+registerForm.addEventListener('submit', e=>{
+  e.preventDefault(); const fd = new FormData(registerForm);
+  const u=fd.get('username').trim(); const d=fd.get('discord').trim(); const p=fd.get('password'); const c=fd.get('confirm');
+  if(p!==c){$('#register-msg').textContent='Passwords do not match.'; return}
+  const users = load('dev_users')||[];
+  if(users.find(x=>x.username.toLowerCase()===u.toLowerCase())){$('#register-msg').textContent='Username taken.';return}
+  const newUser = {username:u,discord:d,password:p,orders:[]}; users.push(newUser); save('dev_users',users);
+  $('#register-msg').textContent='Account created — you are now logged in.';
+  setCurrentUser(u);
+  sendWebhookWelcome(newUser);
+  updateUserArea();
+  showPage('products'); document.querySelector('[data-target="products"]').classList.add('active');
+});
+
+const loginForm = $('#login-form');
+loginForm.addEventListener('submit', e=>{
+  e.preventDefault(); const fd=new FormData(loginForm); const u=fd.get('username').trim(); const p=fd.get('password');
+  const users = load('dev_users')||[]; const user = users.find(x=>x.username===u && x.password===p);
+  if(!user){$('#login-msg').textContent='Invalid credentials.';return}
+  $('#login-msg').textContent='Logged in.'; setCurrentUser(u); updateUserArea(); showPage('products'); document.querySelector('[data-target="products"]').classList.add('active');
+});
+
+function setCurrentUser(username){localStorage.setItem('dev_current_user',username)}
+function getCurrentUser(){return localStorage.getItem('dev_current_user')}
+function logoutUser(){localStorage.removeItem('dev_current_user'); updateUserArea();}
+
+function updateUserArea(){
+  const ua = $('#user-area'); ua.innerHTML=''; const cur = getCurrentUser();
+  if(cur){
+    const span = document.createElement('div'); span.textContent = cur; span.style.marginRight='8px';
+    const btn = document.createElement('button'); btn.textContent='Logout'; btn.className='ghost small'; btn.addEventListener('click',()=>{logoutUser(); showPage('landing'); document.querySelector('[data-target="landing"]').classList.add('active');});
+    ua.appendChild(span); ua.appendChild(btn);
+  } else {
+    const btn = document.createElement('button'); btn.textContent='Login'; btn.className='ghost small'; btn.addEventListener('click',()=>{showPage('customer'); document.querySelector('[data-target="customer"]').classList.add('active');});
+    ua.appendChild(btn);
+  }
+}
+updateUserArea();
+
+// -------------------------------
+// Webhook sending (welcome & orders)
+// -------------------------------
+function getWebhookUrl(){return localStorage.getItem(CONFIG.webhookKey) || ''}
+
+async function sendWebhookWelcome(user){
+  const url=getWebhookUrl(); if(!url) return; // not set
+  const payload = {
+    embeds:[{title:'New account created',color:16711680,fields:[{name:'Username',value:user.username,inline:true},{name:'Discord',value:user.discord||'N/A',inline:true}],footer:{text:'Dev Technology'} }]
+  };
+  try{ await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){console.warn('Webhook send failed (CORS?)',e)}
+}
+
+async function sendWebhookOrder(order){
+  const url=getWebhookUrl(); if(!url) return;
+  const items = order.items.map(i=>`${i.name} x${i.qty} (£${i.price})`).join('\n');
+  const payload = {
+    embeds:[{title:'New order',color:16711680,fields:[{name:'Account',value:order.username,inline:true},{name:'Order #',value:order.id,inline:true},{name:'Invoice ID',value:order.invoice,inline:true},{name:'Items',value:items}],footer:{text:'Dev Technology'} }]
+  };
+  try{ await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){console.warn('Webhook send failed (CORS?)',e)}
+}
+
+// -------------------------------
+// Products listing & cart
+// -------------------------------
+function renderProducts(){
+  const grid = $('#products-grid'); grid.innerHTML='';
+  const products = load('dev_products')||[]; const user = getCurrentUser();
+  if(!user){grid.innerHTML='<div class="notice">You must be logged in to view products. Use the Customer Portal to log in or register.</div>'; return}
+  products.forEach(p=>{
+    const d = document.createElement('div'); d.className='product';
+    const img = document.createElement('img'); img.src = p.image || 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="18" fill="#bbb">No image</text></svg>`);
+    const name = document.createElement('div'); name.style.fontWeight='700'; name.textContent=p.name;
+    const price = document.createElement('div'); price.textContent='£'+Number(p.price).toFixed(2);
+    const btn = document.createElement('button'); btn.className='btn small right'; btn.textContent='Add to Cart'; btn.addEventListener('click',()=>{addToCart(p.id)});
+    d.appendChild(img); d.appendChild(name); d.appendChild(price); d.appendChild(btn);
+    grid.appendChild(d);
+  });
+}
+
+function getCart(){return load('dev_cart')||[]}
+function saveCart(c){save('dev_cart',c); updateCartCount();}
+function addToCart(pid){
+  const products = load('dev_products')||[]; const p = products.find(x=>x.id===pid); if(!p) return; const cart = getCart(); const existing = cart.find(x=>x.id===pid);
+  if(existing){existing.qty +=1;} else cart.push({id:p.id,name:p.name,price:p.price,image:p.image,qty:1}); saveCart(cart); notify('Added to cart');}
+
+function updateCartCount(){const c=getCart().reduce((s,i)=>s+i.qty,0); $('#cart-count').textContent=c}
+updateCartCount();
+
+$('#open-cart').addEventListener('click',()=>{showPage('cart'); document.querySelector('[data-target="products"]').classList.remove('active'); document.querySelector('[data-target="landing"]').classList.remove('active');});
+
+function renderCart(){const list = $('#cart-list'); list.innerHTML=''; const cart = getCart(); if(cart.length===0){list.innerHTML='<div class="muted">Your cart is empty.</div>'; return}
+  cart.forEach(item=>{
+    const div = document.createElement('div'); div.style.display='flex'; div.style.alignItems='center'; div.style.gap='12px'; div.style.marginBottom='8px';
+    const img = document.createElement('img'); img.src = item.image || 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100"><rect width="100%" height="100%" fill="#f3f3f3"/></svg>`); img.style.width='80px'; img.style.height='50px'; img.style.objectFit='cover';
+    const nm = document.createElement('div'); nm.innerHTML=`<strong>${item.name}</strong><div class="muted">£${Number(item.price).toFixed(2)} × ${item.qty}</div>`;
+    const x = document.createElement('button'); x.textContent='✕'; x.className='ghost small'; x.addEventListener('click',()=>{removeFromCart(item.id)});
+    div.appendChild(img); div.appendChild(nm); div.appendChild(x);
+    list.appendChild(div);
+  });
+}
+
+function removeFromCart(id){let cart=getCart(); cart=cart.filter(i=>i.id!==id); saveCart(cart); renderCart();}
+
+$('#clear-cart').addEventListener('click',()=>{saveCart([]); renderCart();});
+
+// -------------------------------
+// Checkout & orders
+// -------------------------------
+$('#complete-order').addEventListener('click',()=>{
+  const cart = getCart(); if(cart.length===0){notify('Cart empty');return}
+  const user = getCurrentUser(); if(!user){notify('You must be logged in'); showPage('customer'); return}
+  const order = {id:'ORD-'+Math.floor(Math.random()*900000+100000), invoice:'INV-'+idNow(),username:user,items:cart.slice(),created:new Date().toISOString(),claimed:false};
+  const orders = load('dev_orders')||[]; orders.unshift(order); save('dev_orders',orders);
+  // also append to user's profile
+  const users = load('dev_users')||[]; const u = users.find(x=>x.username===user); if(u){u.orders = u.orders||[]; u.orders.unshift(order); save('dev_users',users);}
+  // clear cart
+  saveCart([]);
+  // show thank you
+  showPage('checkout'); document.getElementById('thanks').innerHTML = `<p>Thank you for your purchase! Please open a ticket in the support server with the link below.</p><p><strong>Discord:</strong> <a href="#">https://discord.gg/3A8kakMmtt</a></p><p><strong>Order number:</strong> ${order.id}</p><p><strong>Invoice ID:</strong> ${order.invoice}</p>`;
+  // send webhook
+  sendWebhookOrder(order);
+});
+
+// -------------------------------
+// Staff area
+// -------------------------------
+const staffLoginForm = $('#staff-login-form');
+staffLoginForm.addEventListener('submit',e=>{e.preventDefault(); const fd=new FormData(staffLoginForm); const u=fd.get('username'); const p=fd.get('password'); const staff = load('dev_staff')||[]; const s = staff.find(x=>x.username===u && x.password===p); if(!s){notify('Invalid staff credentials');return} localStorage.setItem('dev_current_staff',u); showStaffDashboard();});
+
+function showStaffDashboard(){ $('#staff-login-section').classList.add('hidden'); $('#staff-dashboard').classList.remove('hidden'); renderStaffArea(); }
+
+function renderStaffArea(){ const cur = localStorage.getItem('dev_current_staff'); if(!cur){ $('#staff-login-section').classList.remove('hidden'); $('#staff-dashboard').classList.add('hidden'); return } $('#staff-login-section').classList.add('hidden'); $('#staff-dashboard').classList.remove('hidden'); renderProductsList(); renderOrdersList(); renderCustomersList(); renderLandingEditor(); $('#webhook-url').value = localStorage.getItem(CONFIG.webhookKey) || '' }
+
+$('#logout-staff').addEventListener('click',()=>{ localStorage.removeItem('dev_current_staff'); renderStaffArea(); showPage('landing');});
+
+// Product create
+$('#product-create').addEventListener('submit', async e=>{
+  e.preventDefault(); const fd=new FormData(e.target); const name=fd.get('name').trim(); const price=parseFloat(fd.get('price'))||0; const imageUrl = fd.get('image').trim();
+  let image = imageUrl;
+  const file = $('#product-image-file').files[0];
+  if(file){ image = await fileToDataUrl(file); }
+  const products = load('dev_products')||[]; const p={id:idNow(),name,price,image,desc:''}; products.unshift(p); save('dev_products',products); e.target.reset(); renderProductsList(); renderProducts(); updateCartCount();
+});
+
+function fileToDataUrl(file){return new Promise((res,rej)=>{const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file);})}
+
+function renderProductsList(){const list=$('#products-list'); list.innerHTML=''; const products=load('dev_products')||[]; products.forEach(p=>{const it=document.createElement('div'); it.className='item'; it.innerHTML=`<img src="${p.image||''}" style="width:48px;height:48px;object-fit:cover;border-radius:6px"/><div style="flex:1"><strong>${p.name}</strong><div class="muted">£${Number(p.price).toFixed(2)}</div></div>`; const del=document.createElement('button'); del.className='danger small'; del.textContent='Delete'; del.addEventListener('click',()=>{if(confirm('Delete product?')){const arr=load('dev_products')||[]; save('dev_products',arr.filter(x=>x.id!==p.id)); renderProductsList(); renderProducts();}}); it.appendChild(del); list.appendChild(it);});}
+
+function renderOrdersList(){const list=$('#orders-list'); list.innerHTML=''; const orders=load('dev_orders')||[]; orders.forEach(o=>{const it=document.createElement('div'); it.className='item'; it.innerHTML=`<div style="flex:1"><strong>${o.id}</strong><div class="muted">${o.username} • ${new Date(o.created).toLocaleString()}</div></div>`; const claimBtn=document.createElement('button'); claimBtn.className='claim small'; claimBtn.textContent = o.claimed ? 'Claimed' : 'Claim'; claimBtn.disabled=o.claimed; claimBtn.addEventListener('click',()=>{const orders=load('dev_orders')||[]; const ord=orders.find(x=>x.id===o.id); if(ord){ord.claimed=true; save('dev_orders',orders); renderOrdersList();}}); const del=document.createElement('button'); del.className='danger small'; del.textContent='Delete'; del.addEventListener('click',()=>{if(confirm('Delete order?')){let arr=load('dev_orders')||[]; arr=arr.filter(x=>x.id!==o.id); save('dev_orders',arr); renderOrdersList();}}); it.appendChild(claimBtn); it.appendChild(del); list.appendChild(it);});}
+
+$('#mass-delete-orders').addEventListener('click',()=>{if(confirm('Delete ALL orders?')){save('dev_orders',[]); renderOrdersList();}});
+
+function renderCustomersList(){const list=$('#customers-list'); list.innerHTML=''; const users=load('dev_users')||[]; users.forEach(u=>{const it=document.createElement('div'); it.className='item'; it.innerHTML=`<div style="flex:1"><strong>${u.username}</strong><div class="muted">Discord: ${u.discord||'N/A'}</div></div>`; const view=document.createElement('button'); view.className='small'; view.textContent='View'; view.addEventListener('click',()=>{showCustomerProfile(u.username)}); it.appendChild(view); list.appendChild(it);});}
+
+function showCustomerProfile(username){const users=load('dev_users')||[]; const u = users.find(x=>x.username===username); if(!u) return; const dlg = document.createElement('div'); dlg.style.position='fixed'; dlg.style.left='50%'; dlg.style.top='50%'; dlg.style.transform='translate(-50%,-50%)'; dlg.style.background='#fff'; dlg.style.padding='16px'; dlg.style.borderRadius='10px'; dlg.style.boxShadow='0 8px 28px rgba(0,0,0,0.12)'; dlg.style.zIndex=9999; dlg.innerHTML=`<h3>${u.username}</h3><div class="muted">Discord: ${u.discord||'N/A'}</div><h4>Orders</h4>`;
+  const list = document.createElement('div'); (u.orders||[]).forEach(o=>{const el=document.createElement('div'); el.textContent = `${o.id} • ${o.invoice} • ${new Date(o.created).toLocaleString()}`; const del=document.createElement('button'); del.className='danger small'; del.textContent='Delete'; del.addEventListener('click',()=>{if(confirm('Delete this order?')){u.orders=u.orders.filter(x=>x.id!==o.id); save('dev_users',users); document.body.removeChild(dlg); showCustomerProfile(username);}}); el.appendChild(del); list.appendChild(el);}); dlg.appendChild(list);
+  const close=document.createElement('button'); close.textContent='Close'; close.className='ghost small'; close.style.marginTop='8px'; close.addEventListener('click',()=>document.body.removeChild(dlg)); dlg.appendChild(close);
+  document.body.appendChild(dlg);
+}
+
+// -------------------------------
+// Landing staff editor
+// -------------------------------
+function renderLandingEditor(){const cont = $('#landing-staff-editor'); cont.innerHTML=''; const staff = load('dev_landing_staff')||[]; staff.forEach((s,i)=>{
+  const row = document.createElement('div'); row.style.display='flex'; row.style.gap='8px'; row.style.marginBottom='8px';
+  const imgInput = document.createElement('input'); imgInput.placeholder='Image URL'; imgInput.value=s.image||'';
+  const nameInput = document.createElement('input'); nameInput.placeholder='Name'; nameInput.value=s.name||'';
+  const titleInput = document.createElement('input'); titleInput.placeholder='Title'; titleInput.value=s.title||'';
+  const saveBtn = document.createElement('button'); saveBtn.textContent='Save'; saveBtn.className='btn small'; saveBtn.addEventListener('click',()=>{staff[i].image = imgInput.value; staff[i].name = nameInput.value; staff[i].title = titleInput.value; save('dev_landing_staff',staff); renderLandingEditor(); renderLandingStaff();});
+  row.appendChild(imgInput); row.appendChild(nameInput); row.appendChild(titleInput); row.appendChild(saveBtn);
+  cont.appendChild(row);
+});
+}
+
+// -------------------------------
+// helper: allow staff save webhook
+// -------------------------------
+$('#save-webhook').addEventListener('click',()=>{const url = $('#webhook-url').value.trim(); localStorage.setItem(CONFIG.webhookKey,url); alert('Saved webhook (remember: exposing a webhook publicly can be unsafe)');});
+
+// initial render
+renderLandingStaff();
+renderProducts();
+renderProductsList();
+renderOrdersList();
+renderCustomersList();
+renderLandingEditor();
+
+</script>
+</body>
+</html>
