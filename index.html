@@ -449,7 +449,7 @@ function renderProducts(){
     const d = document.createElement('div'); d.className='product';
     const img = document.createElement('img'); img.src = p.image || 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="18" fill="#bbb">No image</text></svg>`);
     const name = document.createElement('div'); name.style.fontWeight='700'; name.textContent=p.name;
-    const price = document.createElement('div'); price.textContent='£'+Number(p.price).toFixed(2);
+    const price = document.createElement('div'); price.textContent='rbx. '+Number(p.price).toFixed(2);
     const btn = document.createElement('button'); btn.className='btn small right'; btn.textContent='Add to Cart'; btn.addEventListener('click',()=>{addToCart(p.id)});
     d.appendChild(img); d.appendChild(name); d.appendChild(price); d.appendChild(btn);
     grid.appendChild(d);
