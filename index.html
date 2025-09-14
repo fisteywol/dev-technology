@@ -431,7 +431,7 @@ async function sendWebhookWelcome(user){
 
 async function sendWebhookOrder(order){
   const url=getWebhookUrl(); if(!url) return;
-  const items = order.items.map(i=>`${i.name} x${i.qty} (£${i.price})`).join('\n');
+  const items = order.items.map(i=>`${i.name} x${i.qty} (rbx. {i.price})`).join('\n');
   const payload = {
     embeds:[{title:'New order',color:16711680,fields:[{name:'Account',value:order.username,inline:true},{name:'Order #',value:order.id,inline:true},{name:'Invoice ID',value:order.invoice,inline:true},{name:'Items',value:items}],footer:{text:'Dev Technology'} }]
   };
