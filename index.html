@@ -270,14 +270,15 @@ const CONFIG = {
 function loadData(){
   if(!localStorage.getItem('dev_users')){
     const users = [
-      {username:'WilliamsTest', discord:'cust#0001', password:'Tester', orders:[]}
+      {username:'customer1', discord:'cust#0001', password:'pass', orders:[]}
     ];
     localStorage.setItem('dev_users', JSON.stringify(users));
   }
   if(!localStorage.getItem('dev_staff')){
     const staff = [
-      {username:'willOyston', password:'WilliamIsCool', name:'William Oyston'},
-      {username:'staff1', password:'staff123', name:'Staff One'}
+      {username:'CustomerSupport', password:'Support', name:'Customer Support Team'},
+      {username:'Managment', password:'Managment', name:'Managment'},
+	  {username:'William', password:'Oyston', name:'Will Oyston'}
     ];
     localStorage.setItem('dev_staff', JSON.stringify(staff));
   }
@@ -431,7 +432,7 @@ async function sendWebhookWelcome(user){
 
 async function sendWebhookOrder(order){
   const url=getWebhookUrl(); if(!url) return;
-  const items = order.items.map(i=>`${i.name} x${i.qty} (rbx. {i.price})`).join('\n');
+  const items = order.items.map(i=>`${i.name} x${i.qty} (£${i.price})`).join('\n');
   const payload = {
     embeds:[{title:'New order',color:16711680,fields:[{name:'Account',value:order.username,inline:true},{name:'Order #',value:order.id,inline:true},{name:'Invoice ID',value:order.invoice,inline:true},{name:'Items',value:items}],footer:{text:'Dev Technology'} }]
   };
@@ -449,7 +450,7 @@ function renderProducts(){
     const d = document.createElement('div'); d.className='product';
     const img = document.createElement('img'); img.src = p.image || 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="18" fill="#bbb">No image</text></svg>`);
     const name = document.createElement('div'); name.style.fontWeight='700'; name.textContent=p.name;
-    const price = document.createElement('div'); price.textContent='rbx. '+Number(p.price).toFixed(2);
+    const price = document.createElement('div'); price.textContent='£'+Number(p.price).toFixed(2);
     const btn = document.createElement('button'); btn.className='btn small right'; btn.textContent='Add to Cart'; btn.addEventListener('click',()=>{addToCart(p.id)});
     d.appendChild(img); d.appendChild(name); d.appendChild(price); d.appendChild(btn);
     grid.appendChild(d);
